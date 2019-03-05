@@ -18,9 +18,7 @@ class PostsController < ApplicationController
             req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
 
         end
-        brand = JSON.parse res.body
-        puts brand['data']['detections'][0]['name']
-        puts brand['data']['detections'][0]['confidenceALE']
+        put res.body
         render json: res.body
     end
 
