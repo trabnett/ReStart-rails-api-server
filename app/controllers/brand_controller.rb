@@ -2,7 +2,7 @@ require 'faraday'
 require 'dotenv'
 
 
-class PostsController < ApplicationController
+class BrandController < ApplicationController
 
     def index
 
@@ -18,10 +18,18 @@ class PostsController < ApplicationController
             req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
 
         end
-        brand = JSON.parse res.body
-        puts brand['data']['detections'][0]['name']
-        puts brand['data']['detections'][0]['confidenceALE']
-        render json: res.body
+        response = JSON.parse res.body
+        name = response['data']['detections'][0]['name']
+        brand_prediction = response['data']['detections'][0]['confidenceALE']
+
+        @logged_item = LoggedItem.find(7)
+        @logged_item["brand"] = name
+        @logged_item["brand_prediction"] = brand_prediction
+        @logged_item.save
+
+
+
+        render json: @loggedItem
     end
 
 
@@ -38,5 +46,3 @@ class PostsController < ApplicationController
   
 
 end
-
-

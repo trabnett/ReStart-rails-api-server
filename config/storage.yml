@@ -11,8 +11,8 @@ amazon:
   service: S3
   access_key_id: ENV['S3_KEY']
   secret_access_key: ENV['S3_SECRET-KEY']
-  region: us-west-2
-  bucket: restartlighthouselabs
+  region: ENV['S3_REGION']
+  bucket: ENV['S3_BUCKET']
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:

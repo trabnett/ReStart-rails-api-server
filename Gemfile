@@ -14,10 +14,15 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'faraday', '~> 0.9.2'
 
+gem 'faraday_middleware'
+
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 
-gem 'aws-sdk-rails'
+gem 'aws-sdk-s3', '~> 1.0.0.rc2'
 
+gem 'ibm_watson', '~> 0.1.1'
+
+gem 'clarifai_ruby'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
