@@ -14,14 +14,14 @@ class WasteController < ApplicationController
             conn.use Faraday::Adapter::NetHttp
         end
         conn.basic_auth('apikey', 'BPMTSxeoRLbKg6iYtfvufZNqplvT8OhSkRAReNFDQSlB')
-        response = conn.get("?url=#{url}")
-        recycle = response.body["images"][0]["classifiers"][0]["classes"][0]["class"]
-        recycle_prediction = response.body["images"][0]["classifiers"][0]["classes"][0]["score"]
+        response = conn.get("?url=#{url}&version=2018-03-19&classifier_ids=waste_549934001")
+        # recycle = response.body["images"][0]["classifiers"][0]["classes"][0]["class"]
+        # recycle_prediction = response.body["images"][0]["classifiers"][0]["classes"][0]["score"]
         
-        @logged_item = LoggedItem.find(7)
-        @logged_item["recycle_status"] = recycle
-        @logged_item["recycle_status_prediction"] = recycle_prediction
-        @logged_item.save
+        # @logged_item = LoggedItem.find(7)
+        # @logged_item["recycle_status"] = recycle
+        # @logged_item["recycle_status_prediction"] = recycle_prediction
+        # @logged_item.save
         
         render json: response.body
 
