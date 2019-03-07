@@ -19,30 +19,17 @@ class BrandController < ApplicationController
 
         end
         response = JSON.parse res.body
-        name = response['data']['detections'][0]['name']
-        brand_prediction = response['data']['detections'][0]['confidenceALE']
+        # name = response['data']['detections'][0]['name']
+        # brand_prediction = response['data']['detections'][0]['confidenceALE']
 
-        @logged_item = LoggedItem.find(7)
-        @logged_item["brand"] = name
-        @logged_item["brand_prediction"] = brand_prediction
-        @logged_item.save
+        # @logged_item = LoggedItem.find(7)
+        # @logged_item["brand"] = name
+        # @logged_item["brand_prediction"] = brand_prediction
+        # @logged_item.save
 
 
 
-        render json: @loggedItem
+        render json: response
     end
-
-
-
-
-
-
-
-    private
-  
-    def loggedItem_params
-      params.permit(:brand)
-    end
-  
 
 end
