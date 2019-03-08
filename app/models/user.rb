@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_many :coupon_instances
+    has_many :logged_items
     has_secure_password
     validates :email, presence: true, uniqueness: true
 
