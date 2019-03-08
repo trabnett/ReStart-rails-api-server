@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :brand
+  # resources :brand
 
   resources :pic
 
-  resources :waste
+  # resources :waste
 
-  resources :id
+  # resources :id
 
   resources :users
+
+  resources :coupons
 
   	# log in page with form:
 	get '/login'     => 'sessions#new'

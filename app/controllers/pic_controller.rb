@@ -3,8 +3,10 @@ require "base64"
 class PicController < ApplicationController
 
     def create
-        session_id = 3
+        session_id = 4
         encoded_string = Base64.strict_decode64(request.body.read)
+        puts encoded_string
+        puts "hello!"
 
 
         new_file = File.new('./tmp/storage/test.png', 'wb')
@@ -36,7 +38,19 @@ class PicController < ApplicationController
         
         logged_item = LoggedItem.new
         logged_item.user_id = session_id
-        logged_item["recycle_status"] = recycle
+        logged_item["recycle_status"] = "Recycle"
+        current_points = user.points
+
+        if recycle = "Recycle"
+                final_points = current_points + 80
+            elsif recycle = "Compost"
+                final_points = current_points + 100
+            elsif recycle = "Hazardous"
+                final_points = current_points + 60
+        end
+
+        user.update_attributes(points: final_points)
+            
         logged_item["recycle_status_prediction"] = recycle_prediction
         logged_item["photo"] = url
 
@@ -98,12 +112,14 @@ class PicController < ApplicationController
             recycle_status: recycle,
             recycle_status_prediction: recycle_prediction,
             user_id: session_id,
+            user_points: final_points,
             brand: name2,
             brand_prediction: brand_prediction,
             item_type: output1,
             item_type_prediction: output2            
         }
         render json: payload
+
 
         File.delete('./tmp/storage/test.png')
     end 

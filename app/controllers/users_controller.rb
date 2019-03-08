@@ -4,7 +4,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         @user.password = params[:password]
         @user.save!
-        render json: {alert: "user created"}
+        render json: {alert: "user created", user_id:}
     end
 
     def login
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         if @user.password == params[:password]
             give_token
         else
-            redirect_to home_url
+            render json: {alert: "error logging in"}
         end
     end
 
