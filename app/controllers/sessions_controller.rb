@@ -16,7 +16,13 @@ class SessionsController < ApplicationController
             # Save the user.id in that user's session cookie:
             session[:user_id] = user.id.to_s
             coupons = CouponInstance.where(user_id: user.id)
-            response = {alert: "sucessful login", session_id: session[:user_id], coupons: coupons}
+            response = {alert: "sucessful login", 
+                        session_id: session[:user_id], 
+                        coupons: coupons,
+                        email: user.email, 
+                        first_name: user.first_name,
+                        last_name: user.last_name,
+                        points: user.points}
             render json: response
         else
             # if email or password incorrect, re-render login page:
