@@ -22,7 +22,11 @@ class IdController < ActionController::API
             req.headers['Content-Type'] = "application/json"
             req.body = body
         end
-        puts json: res
+
+        user = User.find(4)
+        render json: user
+        puts "hello"
+
 
         # @logged_item = LoggedItem.find(7)
         # @logged_item["item_type"] = recycle

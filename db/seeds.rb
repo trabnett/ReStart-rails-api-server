@@ -15,4 +15,13 @@ Brand.create(name: 'Nestle', logo: 'http://www.morganwilliams.ca/wp-content/uplo
 Brand.create(name: 'Lighthouse Labs', logo: 'https://media.glassdoor.com/sqll/1703209/lighthouse-labs-squarelogo-1499717044293.png')
 Brand.create(name: 'Duracell', logo: 'https://2.bp.blogspot.com/-O24JiqbqAnY/UhspDiewMUI/AAAAAAAAAlI/gbZrf9jXNOg/w1200-h630-p-k-no-nu/Logo+Duracell.JPG')
 
+BrandCoupon.create(brand_id: 4, code: "78907", expiary_date: "1-1-2020".to_date, content: "thank you for drinking so much Dr. Pepper! Have this coupon for $1 off your next purchase. Also, you should see a doctor. This beverage is terrible for you.", item_number: 1)
+BrandCoupon.create(brand_id: 8, code: "61524", expiary_date: "1-1-2020".to_date, content: "You just earned valuabe Duracell dollers! Way to go!", item_number: 2)
+
+
+
+
+
+
+
 

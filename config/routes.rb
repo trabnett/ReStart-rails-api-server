@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # resources :waste
 
-  # resources :id
+  resources :id
 
   resources :users
 
@@ -14,10 +14,10 @@ Rails.application.routes.draw do
 
   	# log in page with form:
 	get '/login'     => 'sessions#new'
-	
+
 	# create (post) action for when log in form is submitted:
 	post '/login'    => 'sessions#create'
-	
+
 	# delete action to log out:
-	post '/logout' => 'sessions#destroy'  
+	post '/logout' => 'sessions#destroy'
 end
