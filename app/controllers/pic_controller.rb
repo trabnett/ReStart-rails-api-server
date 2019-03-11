@@ -3,7 +3,7 @@ require "base64"
 class PicController < ApplicationController
 
     def create
-        session_id = 4
+        session_id = 1
         encoded_string = Base64.strict_decode64(request.body.read)
 
 
@@ -94,10 +94,9 @@ class PicController < ApplicationController
 
         conn = Faraday.new
         resp = conn.post do |req|
-            req.url 'https://api.clarifai.com/v2/models/aaa03c23b3724a16a56b629203edc62c/versions/aa7f35c01e0642fda5cf400f543e7c40/outputs'
+            req.url 'https://api.clarifai.com/v2/models/aaa03c23b3724a16a56b629203edc62c/versions/aa7f35c01e0642fda5cf400f543e7c40/outputs?model-id=47b659e7171b48c3858b2db71b3500e8'
             req.headers['Authorization'] = "Key #{ENV['CLARIFAI_API']}"
             req.headers['Content-Type'] = "application/json"
-            req.headers['model-id'] = "47b659e7171b48c3858b2db71b3500e8"
             req.body = body
         end
         response3 = JSON.parse resp.body

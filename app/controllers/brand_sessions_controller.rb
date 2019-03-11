@@ -6,7 +6,7 @@ class BrandSessionsController < ApplicationController
     end
 
     def create
-
+        byebug
         # Look up User in db by the email address submitted to the login form and
         # convert to lowercase to match email in db in case they had caps lock on:
         brand = Brand.find_by(email: params[:email])
@@ -23,6 +23,7 @@ class BrandSessionsController < ApplicationController
                         session_id: session[:brand_id], 
                         email: brand.email,
                         brand_name: name,
+                        brand_logo: brand.logo
                         }
             render json: response
         else
