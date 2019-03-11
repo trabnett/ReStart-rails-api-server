@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :coupons
 
+  resource :brands
+
   	# log in page with form:
 	get '/login'     => 'sessions#new'
 
@@ -19,5 +21,13 @@ Rails.application.routes.draw do
 	post '/login'    => 'sessions#create'
 
 	# delete action to log out:
-	post '/logout' => 'sessions#destroy'
+  post '/logout' => 'sessions#destroy'
+  
+  get '/brands/login'     => 'brand_sessions#new'
+
+	# create (post) action for when log in form is submitted:
+	post '/brands/login'    => 'brand_sessions#create'
+
+	# delete action to log out:
+	post '/brands/logout' => 'brand_sessions#destroy'
 end

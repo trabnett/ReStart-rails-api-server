@@ -31,20 +31,20 @@ class PicController < ApplicationController
             conn.use Faraday::Adapter::NetHttp
         end
         conn.basic_auth('apikey', ENV['WATSON_API'])
-        response = conn.get("?url=#{url}&version=2018-03-19&classifier_ids=waste_549934001")
+        response = conn.get("?url=#{url}&version=2019-03-10&classifier_ids=waste_549934001")
         recycle = response.body["images"][0]["classifiers"][0]["classes"][0]["class"]
         recycle_prediction = response.body["images"][0]["classifiers"][0]["classes"][0]["score"]
         
         logged_item = LoggedItem.new
         logged_item.user_id = session_id
-        logged_item["recycle_status"] = "Recycle"
+        logged_item["recycle_status"] = recycle
         current_points = user.points
 
-        if recycle = "Recycle"
+        if recycle == "Recycle"
             final_points = 80
-        elsif recycle = "Compost"
+        elsif recycle == "Compost"
             final_points = 100
-        elsif recycle = "Hazardous"
+        elsif recycle == "Hazardous"
             final_points = 60
         else
             final_points = 0
@@ -97,6 +97,7 @@ class PicController < ApplicationController
             req.url 'https://api.clarifai.com/v2/models/aaa03c23b3724a16a56b629203edc62c/versions/aa7f35c01e0642fda5cf400f543e7c40/outputs'
             req.headers['Authorization'] = "Key #{ENV['CLARIFAI_API']}"
             req.headers['Content-Type'] = "application/json"
+            req.headers['model-id'] = "47b659e7171b48c3858b2db71b3500e8"
             req.body = body
         end
         response3 = JSON.parse resp.body
@@ -107,7 +108,8 @@ class PicController < ApplicationController
         output2 = logged_item["item_type_prediction"]
 
         logged_item.save
-
+        puts recycle
+        puts "woooooooo"
         payload = {
             url: url,
             recycle_status: recycle,
@@ -125,6 +127,8 @@ class PicController < ApplicationController
         File.delete('./tmp/storage/test.png')
     end 
 end
+
+
 
 
 

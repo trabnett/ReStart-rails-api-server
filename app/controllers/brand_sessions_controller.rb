@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class BrandSessionsController < ApplicationController
 
     def new
         # No need for anything in here, we are just going to render our
@@ -9,21 +9,21 @@ class SessionsController < ApplicationController
 
         # Look up User in db by the email address submitted to the login form and
         # convert to lowercase to match email in db in case they had caps lock on:
-        user = User.find_by(email: params[:email])
+        brand = Brand.find_by(email: params[:email])
         
         # Verify user exists in db and run has_secure_password's .authenticate() 
         # method to see if the password submitted on the login form was correct: 
-        if user && user.authenticate(params[:password]) 
+        if brand && brand.authenticate(params[:password]) 
             # Save the user.id in that user's session cookie:
-            session[:user_id] = user.id.to_s
-            coupons = CouponInstance.where(user_id: user.id)
+            if brand.name
+                name = brand.name
+            end
+            session[:brand_id] = brand.id.to_s
             response = {alert: "sucessful login", 
-                        session_id: session[:user_id], 
-                        coupons: coupons,
-                        email: user.email, 
-                        first_name: user.first_name,
-                        last_name: user.last_name,
-                        points: user.points}
+                        session_id: session[:brand_id], 
+                        email: brand.email,
+                        brand_name: name,
+                        }
             render json: response
         else
             # if email or password incorrect, re-render login page:
