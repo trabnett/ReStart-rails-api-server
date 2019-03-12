@@ -1,12 +1,9 @@
 require "base64"
 
 class PicController < ApplicationController
-
     def create
         session_id = 1
         encoded_string = Base64.strict_decode64(request.body.read)
-
-
 
         new_file = File.new('./tmp/storage/test.png', 'wb')
         new_file.write(encoded_string)
@@ -91,7 +88,6 @@ class PicController < ApplicationController
             ]
         }
         body = chunk.to_json
-
         conn = Faraday.new
         resp = conn.post do |req|
             req.url 'https://api.clarifai.com/v2/models/aaa03c23b3724a16a56b629203edc62c/versions/aa7f35c01e0642fda5cf400f543e7c40/outputs?model-id=47b659e7171b48c3858b2db71b3500e8'
@@ -107,8 +103,9 @@ class PicController < ApplicationController
         output2 = logged_item["item_type_prediction"]
 
         logged_item.save
-        puts recycle
-        puts "woooooooo"
+
+
+        puts "hello"
         payload = {
             url: url,
             recycle_status: recycle,
@@ -120,6 +117,11 @@ class PicController < ApplicationController
             item_type: output1,
             item_type_prediction: output2            
         }
+        # if !coupons.include? newest_coupon
+        #     coupons.newest_coupon
+        #     payload.alert = "You have a new coupon!"
+        # end
+
         render json: payload
 
 

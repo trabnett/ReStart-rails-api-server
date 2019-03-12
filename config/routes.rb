@@ -29,5 +29,12 @@ Rails.application.routes.draw do
 	post '/brands/login'    => 'brand_sessions#create'
 
 	# delete action to log out:
-	post '/brands/logout' => 'brand_sessions#destroy'
+  post '/brands/logout' => 'brand_sessions#destroy'
+  
+  get '/brands/coupons' => 'brands/coupons#index'
+
+  post '/brands/coupons' => 'brands/coupons#new'
+
+  delete '/brands/coupons' => 'brands/coupons#destroy'
+
 end
