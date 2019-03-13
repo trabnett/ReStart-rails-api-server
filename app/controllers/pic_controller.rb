@@ -38,15 +38,15 @@ class PicController < ApplicationController
         current_points = user.points
 
         if recycle == "Recycle"
-            final_points = 80
+            final_points = 80 + current_points
         elsif recycle == "Compost"
-            final_points = 100
+            final_points = 100 + current_points
         elsif recycle == "Hazardous"
-            final_points = 60
+            final_points = 60 + current_points
         else
-            final_points = 0
+            final_points = 0 + current_points
         end
-
+        
         user.update_attributes(points: final_points)
             
         logged_item["recycle_status_prediction"] = recycle_prediction
@@ -90,12 +90,13 @@ class PicController < ApplicationController
         body = chunk.to_json
         conn = Faraday.new
         resp = conn.post do |req|
-            req.url 'https://api.clarifai.com/v2/models/aaa03c23b3724a16a56b629203edc62c/versions/aa7f35c01e0642fda5cf400f543e7c40/outputs?model-id=47b659e7171b48c3858b2db71b3500e8'
+            req.url 'https://api.clarifai.com/v2/models/ReStart%20app/outputs'
             req.headers['Authorization'] = "Key #{ENV['CLARIFAI_API']}"
             req.headers['Content-Type'] = "application/json"
             req.body = body
         end
         response3 = JSON.parse resp.body
+
         logged_item["item_type"] = response3["outputs"][0]['data']['concepts'][0]['name']
         logged_item["item_type_prediction"] = response3["outputs"][0]['data']['concepts'][0]['value']
 
@@ -104,8 +105,13 @@ class PicController < ApplicationController
 
         logged_item.save
 
-
-        puts "hello"
+        if Brand.exists?(name: name2)
+            brand = Brand.where(name: name2)
+            brand_id = brand[0]["id"].to_i
+            newest_brand_coupon = BrandCoupon.where(brand_id: brand[0]["id"]).last
+            newest_coupon_instance = CouponInstance.create(coupon_id: newest_brand_coupon["id"], barcode: newest_brand_coupon["code"], user_id: session_id, amount: newest_brand_coupon["value"], logo: brand[0]["logo"], issue_date: newest_brand_coupon["created_at"], status: "pending", issue_date: DateTime.now, expiry_date: newest_brand_coupon["expiary_date"])
+        end
+        coupons = CouponInstance.where(user_id: session_id)
         payload = {
             url: url,
             recycle_status: recycle,
@@ -115,12 +121,10 @@ class PicController < ApplicationController
             brand: name2,
             brand_prediction: brand_prediction,
             item_type: output1,
-            item_type_prediction: output2            
+            item_type_prediction: output2,
+            coupons: coupons
         }
-        # if !coupons.include? newest_coupon
-        #     coupons.newest_coupon
-        #     payload.alert = "You have a new coupon!"
-        # end
+
 
         render json: payload
 

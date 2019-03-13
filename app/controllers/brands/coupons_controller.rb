@@ -1,7 +1,6 @@
 class Brands::CouponsController < ApplicationController
 
     def new
-        byebug
         brand = Brand.find_by(name: params[:brand_name])
         @brand_coupon = BrandCoupon.create(brand_id: brand.id, code: params[:code], expiary_date: params[:expiry_date,], value: params[:coupon_value])
         res = {new_coupon: @brand_coupon}
@@ -21,6 +20,6 @@ class Brands::CouponsController < ApplicationController
 
     def coupon_params
         params.permit(:brand_id, :value, :expiary_date, :content, :password_confirmation)
-# BrandCoupon.create(brand_id: 4, code: "78907", expiary_date: "1-1-2020".to_date, content: "thank you for drinking so much Dr. Pepper! Have this coupon for $1 off your next purchase. Also, you should see a doctor. This beverage is terrible for you.", item_number: 1)
+
     end
 end

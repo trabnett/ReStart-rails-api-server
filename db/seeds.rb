@@ -10,7 +10,7 @@ User.create(first_name: "lucas", last_name: "cruz", email: "lucas", password: "a
 
 Brand.create(name: 'Starbucks', logo: 'https://www.universityvillageriverside.com/wp-content/uploads/2018/03/starbucks_logo.jpg', password: "asdf", password_confirmation: "asdf", email: 'starbucks@starbucks.com')
 Brand.create(name: 'Dasani', logo: 'https://cdn.freebiesupply.com/logos/large/2x/dasani-logo-png-transparent.png', password: "asdf", password_confirmation: "asdf", email: 'dasani@dasani.com')
-Brand.create(name: 'Coca-Cola', email: 'coke@coke.com', logo: 'https://www.coca-cola.ie/content/dam/journey/ie/en/hidden/History/heritage/596x334/the_logo_story_01122014_596x334.jpg', password: "asdf", password_confirmation: "asdf")
+Brand.create(name: 'Coca-Cola', email: 'coke@coke.com', logo: 'http://twoparrot.com/wp-content/uploads/2011/10/Coke-Logo.jpg', password: "asdf", password_confirmation: "asdf")
 Brand.create(name: 'Dr Pepper', email: 'drpepper@drpepper.com', logo: 'https://rmhckc.org/wp-content/uploads/2018/08/Dr-Pepper-Logo.jpg', password: "asdf", password_confirmation: "asdf")
 Brand.create(name: 'Chiquita', email: 'chiquita@chipuita.com', logo: 'https://i.pinimg.com/originals/26/9c/1c/269c1cb9a8cabfe436a5325ab41131d5.jpg', password: "asdf", password_confirmation: "asdf")
 Brand.create(name: 'Nestle', email: 'nestle@nestle.com', logo: 'http://www.morganwilliams.ca/wp-content/uploads/2014/04/nestle-logo.jpg', password: "asdf", password_confirmation: "asdf")
