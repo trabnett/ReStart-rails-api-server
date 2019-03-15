@@ -1,24 +1,7 @@
-# README
+Web App for ReStart recycling app.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project by tim rabnett (github: trabnett), Lucas Cruz (github: PointCodeZero) and Hilary Watson (github: Hilwat)
 
-Things you may want to cover:
+Please see project README at:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+https://github.com/PointCodeZero/ReStart/tree/master/react-native
