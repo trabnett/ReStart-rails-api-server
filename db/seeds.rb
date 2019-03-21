@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(first_name: "lucas", last_name: "cruz", email: "lucas", password: "asdf", password_confirmation: "asdf", points: 1020)
+User.create(first_name: "lucas", last_name: "cruz", email: "lucas@lucas.com", password: "asdf", password_confirmation: "asdf", points: 1020)
 
 Brand.create(name: 'Starbucks', logo: 'https://www.universityvillageriverside.com/wp-content/uploads/2018/03/starbucks_logo.jpg', password: "asdf", password_confirmation: "asdf", email: 'starbucks@starbucks.com')
 Brand.create(name: 'Dasani', logo: 'https://cdn.freebiesupply.com/logos/large/2x/dasani-logo-png-transparent.png', password: "asdf", password_confirmation: "asdf", email: 'dasani@dasani.com')

@@ -23,6 +23,7 @@ class SessionsController < ApplicationController
                         email: user.email, 
                         first_name: user.first_name,
                         last_name: user.last_name,
+                        postcode: user.postcode,
                         points: user.points}
             render json: response
         else
