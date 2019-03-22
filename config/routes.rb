@@ -4,9 +4,7 @@ Rails.application.routes.draw do
 
   resources :pic
 
-  # resources :waste
-
-  resources :id
+  # resources :id
 
   resources :users
 
