@@ -17,9 +17,9 @@ class BrandsController < ApplicationController
     end
 
     def update
-        @brand = Brand.find_by_email(params[:email])
-        if params[:name]
-            @brand.name = params[:name]
+        @brand = Brand.find_by_email(params[:brand_email])
+        if params[:brand_name]
+            @brand.name = params[:brand_name]
         end
         if params[:update_email]
             @brand.email = params[:update_email]
@@ -28,16 +28,15 @@ class BrandsController < ApplicationController
             @brand.password = params[:update_password]
             @brand.password_confirmation = params[:update_password_confirmation]
         end
-        if params[:logo]
-            @brand.logo = params[:logo]
+        if params[:brand_logo]
+            @brand.logo = params[:brand_logo]
         end
-
         @brand.save
         render json: @brand
     end
 
     def brand_params
-        params.permit(:email, :password, :password_confirmation, :update_email, :update_password, :update_password_confirmation)
+        params.permit(:brand_email, :brand_name, :brand_logo, :email, :password, :password_confirmation, :update_email, :update_password, :update_password_confirmation)
     end
 
 end

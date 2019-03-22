@@ -1,6 +1,7 @@
 class Brand < ApplicationRecord
     has_many :brand_coupons
     has_secure_password
+    validates :email, presence: true, uniqueness: true
 
     require 'bcrypt'
 
