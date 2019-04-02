@@ -109,7 +109,7 @@ class PicController < ApplicationController
             brand = Brand.where(name: name2)
             brand_id = brand[0]["id"].to_i
             newest_brand_coupon = BrandCoupon.where(brand_id: brand[0]["id"]).last
-            newest_coupon_instance = CouponInstance.create(coupon_id: newest_brand_coupon["id"], barcode: newest_brand_coupon["code"], user_id: session_id, amount: newest_brand_coupon["value"], logo: brand[0]["logo"], issue_date: newest_brand_coupon["created_at"], status: "pending", issue_date: DateTime.now, expiry_date: newest_brand_coupon["expiary_date"])
+            newest_coupon_instance = CouponInstance.create(coupon_id: newest_brand_coupon["id"], barcode: newest_brand_coupon["code"], user_id: session_id, amount: newest_brand_coupon["value"], logo: brand[0]["logo"], status: "pending", issue_date: DateTime.now, expiry_date: newest_brand_coupon["expiary_date"])
         end
         coupons = CouponInstance.where(user_id: session_id)
         payload = {

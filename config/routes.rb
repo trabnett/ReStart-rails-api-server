@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resource :brands
 
+  get '/' => 'welcome#show'
+
   	# log in page with form:
 	get '/login'     => 'sessions#new'
 
