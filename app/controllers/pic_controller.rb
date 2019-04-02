@@ -126,7 +126,7 @@ class PicController < ApplicationController
         }
 
 
-        render json: payload
+        render json: {response: "test"}
 
 
         File.delete('./tmp/storage/test.png')
