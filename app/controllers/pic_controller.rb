@@ -19,8 +19,8 @@ class PicController < ApplicationController
 
         obj = s3.bucket(ENV['S3_BUCKET']).object(name)
         obj.upload_file(file)
-
-        render json: {s3: ENV['S3_KEY'], s3key: ENV['S3_SECRET_KEY'], region: ENV['S3_REGION']}
+        render json: {hello: "hello"}
+        # render json: {s3: ENV['S3_KEY'], s3key: ENV['S3_SECRET_KEY'], region: ENV['S3_REGION']}
  
         # url = "https://s3-us-west-2.amazonaws.com/restartlighthouselabs/#{name}"
 
