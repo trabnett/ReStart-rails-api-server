@@ -5,7 +5,7 @@ class PicController < ApplicationController
 
         session_id = 1
         encoded_string = Base64.strict_decode64(request.body.read)
-        render json: {hello: "hello"}
+        render json: {hello: "hello", req_body: request.body.read}
 
         # new_file = File.new('./tmp/storage/test.png', 'wb')
         # new_file.write(encoded_string)
