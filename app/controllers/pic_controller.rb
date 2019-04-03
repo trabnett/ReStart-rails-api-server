@@ -8,7 +8,7 @@ class PicController < ApplicationController
         new_file = File.new('./picture_storage/test.png', 'wb')
         new_file.write(encoded_string)
         new_file.close
-        render json: {file: new_file}
+        render json: {file: "test"}
         # s3 = Aws::S3::Resource.new(access_key_id: ENV['S3_KEY'],
         # secret_access_key: ENV['S3_SECRET_KEY'],
         # region: ENV['S3_REGION'],)
