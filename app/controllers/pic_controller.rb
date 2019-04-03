@@ -4,7 +4,7 @@ class PicController < ApplicationController
     def create
         session_id = 1
         encoded_string = Base64.strict_decode64(request.body.read)
-        render json: {file: "test"}
+        render json: {file: encoded_string}
         # new_file = File.new('./picture_storage/test.png', 'wb')
         # new_file.write(encoded_string)
         # new_file.close
