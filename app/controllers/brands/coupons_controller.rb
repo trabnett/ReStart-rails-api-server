@@ -4,8 +4,8 @@ class Brands::CouponsController < ApplicationController
 
         brand = Brand.find_by(name: params[:brand_name])
         @brand_coupon = BrandCoupon.create(brand_id: brand.id, code: params[:code], expiary_date: params[:expiry_date,], value: params[:coupon_value])
-        render json: {brand: @brand_coupon}
-        # res = {new_coupon: @brand_coupon}
+        res = {new_coupon: @brand_coupon}
+        render json: res
         
     end
 
