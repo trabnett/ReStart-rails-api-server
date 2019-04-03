@@ -2,7 +2,7 @@ require "base64"
 
 class PicController < ApplicationController
     def create
-        render json: {hello: "hello"}
+        render json: {hello: "hello", secret_access_key: ENV['S3_SECRET_KEY'], access_key_id: ENV['S3_KEY'], bucket: ENV['S3_BUCKET']}
         # session_id = 1
         # encoded_string = Base64.strict_decode64(request.body.read)
 
