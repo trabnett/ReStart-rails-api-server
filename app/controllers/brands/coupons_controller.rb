@@ -1,8 +1,9 @@
 class Brands::CouponsController < ApplicationController
 
     def new
-        render json: {test: "testing"}
-        # brand = Brand.find_by(name: params[:brand_name])
+
+        brand = Brand.find_by(name: params[:brand_name])
+        render json: {brand: brand}
         # @brand_coupon = BrandCoupon.create(brand_id: brand.id, code: params[:code], expiary_date: params[:expiry_date,], value: params[:coupon_value])
         # res = {new_coupon: @brand_coupon}
         
