@@ -1,14 +1,11 @@
 class Brands::CouponsController < ApplicationController
 
     def new
-        if params[:brand_name]
-            brand = Brand.find_by(name: params[:brand_name])
-            @brand_coupon = BrandCoupon.create(brand_id: brand.id, code: params[:code], expiary_date: params[:expiry_date,], value: params[:coupon_value])
-            res = {new_coupon: @brand_coupon}
-            render json: res
-        else
-            render json: {hey: "whats happening"}
-        end
+
+        brand = Brand.find_by(name: params[:brand_name])
+        @brand_coupon = BrandCoupon.create(brand_id: brand.id, code: params[:code], expiary_date: params[:expiry_date,], value: params[:coupon_value])
+        res = {new_coupon: @brand_coupon}
+        render json: res
         
     end
 
