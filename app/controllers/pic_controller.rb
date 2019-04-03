@@ -6,13 +6,13 @@ class PicController < ApplicationController
         encoded_string = Base64.strict_decode64(request.body.read)
 
 
-        new_file = File.new('./tmp/storage/test.png', 'wb')
+        new_file = File.new('./picture_storage/test.png', 'wb')
         new_file.write(encoded_string)
         new_file.close
         s3 = Aws::S3::Resource.new(access_key_id: ENV['S3_KEY'],
         secret_access_key: ENV['S3_SECRET_KEY'],
         region: ENV['S3_REGION'],)
-        file = './tmp/storage/test.png'
+        file = './picture_storage/test.png'
        
         counter = LoggedItem.count
         user = User.find(session_id)
