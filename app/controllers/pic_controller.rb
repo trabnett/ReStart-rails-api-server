@@ -3,23 +3,23 @@ require "base64"
 class PicController < ApplicationController
     def create
         render json: {hello: "hello"}
-        session_id = 1
-        encoded_string = Base64.strict_decode64(request.body.read)
+        # session_id = 1
+        # encoded_string = Base64.strict_decode64(request.body.read)
 
-        new_file = File.new('./tmp/storage/test.png', 'wb')
-        new_file.write(encoded_string)
-        new_file.close
-        s3 = Aws::S3::Resource.new(access_key_id: ENV['S3_KEY'],
-        secret_access_key: ENV['S3_SECRET_KEY'],
-        region: ENV['S3_REGION'],)
-        file = './tmp/storage/test.png'
+        # new_file = File.new('./tmp/storage/test.png', 'wb')
+        # new_file.write(encoded_string)
+        # new_file.close
+        # s3 = Aws::S3::Resource.new(access_key_id: ENV['S3_KEY'],
+        # secret_access_key: ENV['S3_SECRET_KEY'],
+        # region: ENV['S3_REGION'],)
+        # file = './tmp/storage/test.png'
        
-        counter = LoggedItem.count
-        user = User.find(session_id)
-        name = "#{user.last_name}#{counter}.png"
+        # counter = LoggedItem.count
+        # user = User.find(session_id)
+        # name = "#{user.last_name}#{counter}.png"
 
-        obj = s3.bucket(ENV['S3_BUCKET']).object(name)
-        obj.upload_file(file)
+        # obj = s3.bucket(ENV['S3_BUCKET']).object(name)
+        # obj.upload_file(file)
  
         # render json: {s3: ENV['S3_KEY'], s3key: ENV['S3_SECRET_KEY'], region: ENV['S3_REGION']}
  
