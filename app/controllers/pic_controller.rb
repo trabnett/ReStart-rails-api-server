@@ -4,24 +4,25 @@ class PicController < ApplicationController
     def create
         session_id = 1
         encoded_string = Base64.strict_decode64(request.body.read)
-        render json: {test: "test"}
 
-        # new_file = File.new('./picture_storage/test.png', 'wb')
-        # new_file.write(encoded_string)
-        # new_file.close
-        # s3 = Aws::S3::Resource.new(access_key_id: ENV['S3_KEY'],
-        # secret_access_key: ENV['S3_SECRET_KEY'],
-        # region: ENV['S3_REGION'],)
-        # file = './picture_storage/test.png'
+        new_file = File.new('./picture_storage/test.png', 'wb')
+        new_file.write(encoded_string)
+        new_file.close
+        s3 = Aws::S3::Resource.new(access_key_id: ENV['S3_KEY'],
+        secret_access_key: ENV['S3_SECRET_KEY'],
+        region: ENV['S3_REGION'],)
+        file = './picture_storage/test.png'
        
-        # counter = LoggedItem.count
-        # user = User.find(session_id)
-        # name = "#{user.last_name}#{counter}.png"
+        counter = LoggedItem.count
+        user = User.find(session_id)
+        name = "#{user.last_name}#{counter}.png"
 
-        # obj = s3.bucket(ENV['S3_BUCKET']).object(name)
-        # obj.upload_file(file)
+        obj = s3.bucket(ENV['S3_BUCKET']).object(name)
+        obj.upload_file(file)
  
-        # url = "https://s3-us-west-2.amazonaws.com/restartlighthouselabs/#{name}"
+        url = "https://s3-us-west-2.amazonaws.com/restartlighthouselabs/#{name}"
+
+        render json: {url: url}
 
 
         # conn = Faraday.new(url: "https://gateway.watsonplatform.net/visual-recognition/api/v3/classify/") do |conn|
