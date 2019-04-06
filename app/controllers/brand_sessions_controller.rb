@@ -18,11 +18,13 @@ class BrandSessionsController < ApplicationController
                 name = brand.name
             end
             session[:brand_id] = brand.id.to_s
+            coupons = BrandCoupon.where(brand_id: brand.id.to_s).all
             response = {alert: "sucessful login", 
                         session_id: session[:brand_id], 
                         email: brand.email,
                         brand_name: name,
-                        brand_logo: brand.logo
+                        brand_logo: brand.logo,
+                        coupons: coupons
                         }
             render json: response
         else

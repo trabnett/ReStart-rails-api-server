@@ -4,15 +4,15 @@ Rails.application.routes.draw do
 
   resources :pic
 
-  # resources :waste
-
-  resources :id
+  # resources :id
 
   resources :users
 
   resources :coupons
 
   resource :brands
+
+  get '/' => 'welcome#show'
 
   	# log in page with form:
 	get '/login'     => 'sessions#new'
