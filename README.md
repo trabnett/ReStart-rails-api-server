@@ -10,6 +10,6 @@ For GIFS of the mobile app see:
 
 https://github.com/hilwat/Restart-Final/blob/master/README.md
 
-The Webapp interface is hosted on Heroku at (hosted for free, so please allow a minuite for app to wake up):
+The Webapp interface is hosted on Heroku at:
 
 https://restart-web.herokuapp.com/
